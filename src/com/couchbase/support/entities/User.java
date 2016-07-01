@@ -26,10 +26,14 @@ public class User {
 	@Field
 	private String lastname;
 
-	public User(String id, String firstname, String lastname) {
+	@Field
+	private String origin;
+
+	public User(String id, String firstname, String lastname, String origin) {
 		this.id = id;
 		this.firstname = firstname;
 		this.lastname = lastname;
+		this.origin = origin;
 	}
 
 	public String getId() {
@@ -43,6 +47,11 @@ public class User {
 	public String getLastname() {
 		return lastname;
 	}
+
+	public String getOrigin() {
+		return origin;
+	}
+
 }
 
 // EOF

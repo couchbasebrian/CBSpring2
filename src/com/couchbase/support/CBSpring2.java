@@ -45,7 +45,12 @@ public class CBSpring2 {
 
 	public static void main(String[] args) {
 
-		SupportUtils.printCenteredBanner("Welcome.  I will initialize the application context from the classpath.");
+		SupportUtils.printCenteredBanner("Welcome.  I am running on host " + SupportUtils.getHostname() + " and current time is " 
+				+ SupportUtils.getCurrentTimeStamp());
+		
+		String origin = SupportUtils.getHostname() + " " + SupportUtils.getCurrentTimeStamp();
+		
+		SupportUtils.printCenteredBanner("I will initialize the application context from the classpath.");
 		SupportUtils.printCenteredBanner("These folders are in the classpath at this time:");
 
 		SupportUtils.showClasspath();
@@ -55,7 +60,7 @@ public class CBSpring2 {
 		// This looks in the classpath
 		ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("./applicationContext.xml");
 
-		User user1 = new User("user1", "John", "Smith");
+		User user1 = new User("user1", "John", "Smith", origin);
 
 		UserRepository  repo = ctx.getBean(UserRepository.class);
 

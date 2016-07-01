@@ -1,8 +1,11 @@
 package com.couchbase.support;
 
 import java.io.InputStream;
+import java.net.InetAddress;
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import com.couchbase.client.java.Bucket;
@@ -20,6 +23,17 @@ public class SupportUtils {
 
 	private static Gson gson;
 
+	public static String getHostname() {
+		String rval = "Unable to get hostname";
+		try {
+			rval = InetAddress.getLocalHost().getHostName();	
+		}
+		catch (Exception e ){
+			System.out.println(e);
+		}
+		return rval;
+	}
+	
 	public static void showClasspath() {
 		// Display the current classpath
 		ClassLoader cl = ClassLoader.getSystemClassLoader();
@@ -128,6 +142,15 @@ public class SupportUtils {
 		return cbVersion;
 	} // getCouchbaseVersion()
 
+	// borrowed from
+	// http://stackoverflow.com/questions/1459656/how-to-get-the-current-time-in-yyyy-mm-dd-hhmisec-millisecond-format-in-java
+	public static String getCurrentTimeStamp() {
+	    SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");//dd/MM/yyyy
+	    Date now = new Date();
+	    String strDate = sdfDate.format(now);
+	    return strDate;
+	}	
+	
 } // SupportUtils
 
 // EOF
